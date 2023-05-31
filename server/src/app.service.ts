@@ -39,6 +39,7 @@ export class AppService {
           `INSERT INTO valute (id, "NumCode", "CharCode", "Nominal", "Name", "Value", "Previous") VALUES ('${currentValute.ID}','${currentValute.NumCode}','${currentValute.CharCode}','${currentValute.Nominal}', '${currentValute.Name}', '${currentValute.Value}', '${currentValute.Previous}')`,
         );
       }
+      console.log('Данные успешно обновлены');
       return data;
     } catch (err) {
       console.log('Что-то пошло не так... ' + err);
