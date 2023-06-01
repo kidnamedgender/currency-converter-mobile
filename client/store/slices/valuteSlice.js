@@ -29,6 +29,14 @@ const valuteSlice = createSlice({
         builder.addCase(getValutes.fulfilled, (state, action) => {
             state.status = 'fulfilled';
             state.valutes = action.payload;
+            state.valutes = [...state.valutes, {
+                id: '89DB',
+                CharCode: 'RUB',
+                NumCode: "643",
+                Value: 1,
+                Previous: 1,
+                Name: 'Российский рубль'
+            }]
         });
     },
 });

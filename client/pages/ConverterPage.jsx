@@ -1,23 +1,57 @@
 import React from "react";
-import {Button, StyleSheet, Text, TextInput, View} from "react-native";
+import {Button, StyleSheet, View} from "react-native";
 import Section from "../components/Section";
 import {useNavigate} from "react-router-native";
+import Input from "../components/Input";
+import {useSelector} from "react-redux";
 
 function ConverterPage() {
     const navigate = useNavigate();
+    const {valutes} = useSelector(state => state.valute)
+
+    const [fromCurrency, setFromCurrency] = React.useState('RUB');
+    const [toCurrency, setToCurrency] = React.useState('USD');
+
+    const [fromValue, setFromValue] = React.useState(0);
+    const [toValue, setToValue] = React.useState(0);
+
+    const currencies = React.useRef({})
+    React.useEffect(() => {
+        valutes.forEach(el => currencies.current[el.CharCode] = el.Value)
+        console.log(currencies.current[toCurrency])
+    }, [])
+
+
+    React.useEffect(() => {
+        onChangeFromPrice(fromValue);
+    }, [fromValue])
+
+    React.useEffect(() => {
+        onChangeToPrice(toValue)
+    }, [toValue])
+
+    const onChangeFromPrice = (value) => {
+        const price = value / currencies.current[fromCurrency];
+        const result = price * currencies.current[toCurrency];
+        setToValue(result.toFixed(3));
+        setFromValue(value);
+    };
+
+    const onChangeToPrice = (value) => {
+        const price = value / currencies.current[toCurrency];
+        const result = price * currencies.current[fromCurrency];
+        setFromValue(result.toFixed(3));
+        setToValue(value);
+    };
     return (
         <View>
             <Button onPress={() => navigate('/')} title='Валюты'></Button>
             <Section title='Конвертер'>
                 <View style={styles.wrapper}>
-                    <View>
-                        <Text style={styles.current_currencies}>RUB</Text>
-                        <TextInput style={styles.input} placeholder='0'></TextInput>
-                    </View>
-                    <View>
-                        <Text style={styles.current_currencies}>USD</Text>
-                        <TextInput style={styles.input} placeholder='0'></TextInput>
-                    </View>
+                    <Input value={fromValue} currency={fromCurrency} onChangeCurrency={setFromCurrency}
+                           onChangeValue={onChangeFromPrice}/>
+                    <Input value={toValue} currency={toCurrency} onChangeCurrency={setToCurrency}
+                           onChangeValue={onChangeToPrice}/>
                     <Button title={'Конвертировать'}></Button>
                 </View>
             </Section>
@@ -26,23 +60,11 @@ function ConverterPage() {
 }
 
 const styles = StyleSheet.create({
-    input: {
-        borderStyle: 'solid',
-        borderWidth: 1,
-        borderColor: 'rgba(0,0,0,0.4)',
-        paddingLeft: 10,
-        fontSize: 18
-    },
     wrapper: {
         marginTop: 30,
         display: 'flex',
         flexDirection: 'column',
         gap: 20
     },
-    current_currencies: {
-        fontSize: 21,
-        fontWeight: 'bold',
-        marginBottom: 5
-    }
 });
-export default ConverterPage
+export default ConverterPage;

@@ -17,7 +17,7 @@ function ValutePage() {
     }, [dispatch]);
 
     if (status === 'pending') {
-        return <Text style={{textAlign: 'center', marginTop: 20, fontSize: 24}}>Загрузка</Text>
+        return <Text style={{textAlign: 'center', marginTop: 20, fontSize: 24}}>Загрузка...</Text>
     }
 
     return (
