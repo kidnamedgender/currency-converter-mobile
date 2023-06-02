@@ -13,11 +13,11 @@ export default function Section({children, title}) {
         </View>
     );
 }
-
 const styles = StyleSheet.create({
     sectionContainer: {
         marginVertical: 32,
         paddingHorizontal: 24,
+        backgroundColor: '#ffffff',
     },
     sectionTitle: {
         fontSize: 24,

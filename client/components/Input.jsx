@@ -1,44 +1,48 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, TextInput, View} from 'react-native';
+import SelectDropdown from 'react-native-select-dropdown'
 
-import NumericInput from 'react-native-numeric-input';
+function Input({value, currency, onChangeCurrency, onChangeValue, currencies}) {
 
-function Input({value, currency, onChangeCurrency, onChangeValue}) {
-  const onChange = value => {
-    onChangeValue(value);
-  };
+    const onChangeVal = value => {
+        onChangeValue(value);
+    };
+    const onChangeCur = value => {
+        onChangeCurrency(value);
+    };
 
-  return (
-    <View>
-      <View>
-        <Text style={styles.current_currencies}>{currency}</Text>
-        <NumericInput
-          totalWidth={300}
-          totalHeight={50}
-          separatorWidth={0}
-          iconStyle={{display: 'none'}}
-          onChange={value => onChange(value)}
-          valueType="real"
-          placeholder="0"
-          value={Number(value)}></NumericInput>
-      </View>
-    </View>
-  );
+    return (
+        <View>
+            <View>
+                <SelectDropdown data={currencies.current} onSelect={(value) => onChangeCur(value)}
+                                defaultValue={currency} buttonStyle={{width: '100%'}}
+                                search={true}></SelectDropdown>
+                <TextInput
+                    style={styles.input}
+                    keyboardType={"number-pad"}
+                    onChangeText={e =>
+                        onChangeVal(e)}
+                    placeholder="0.00"
+                    value={String(value)}></TextInput>
+            </View>
+        </View>
+    );
 }
 
 const styles = StyleSheet.create({
-  input: {
-    borderStyle: 'solid',
-    borderWidth: 1,
-    borderColor: 'rgba(0,0,0,0.4)',
-    paddingLeft: 10,
-    fontSize: 18,
-    backgroundColor: 'rgba(0,0,0,0.1)',
-  },
-  current_currencies: {
-    fontSize: 21,
-    fontWeight: 'bold',
-    marginBottom: 5,
-  },
+    input: {
+        width: '100%',
+        borderStyle: 'solid',
+        borderWidth: 1,
+        borderColor: 'rgba(0,0,0,0.4)',
+        paddingLeft: 10,
+        fontSize: 18,
+        backgroundColor: 'rgba(0,0,0,0.05)',
+    },
+    current_currencies: {
+        fontSize: 21,
+        fontWeight: 'bold',
+        marginBottom: 5,
+    },
 });
 export default Input;
