@@ -20,7 +20,7 @@ export class AppService {
         }
     }
 
-    @Cron(CronExpression.EVERY_2_HOURS)
+    @Cron(CronExpression.EVERY_30_MINUTES)
     async handleCron(): Promise<string> {
         try {
             const {data} = await firstValueFrom(

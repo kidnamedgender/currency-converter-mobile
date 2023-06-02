@@ -17,12 +17,8 @@ function ConverterPage() {
 
     const currencies = React.useRef({});
     const charCodes = React.useRef([]);
-    React.useEffect(() => {
-        valutes.forEach(el => (currencies.current[el.CharCode] = el.Value));
-        charCodes.current = [];
 
-    }, []);
-
+    charCodes.current = []
     valutes.forEach(el => charCodes.current.push(el.CharCode))
     React.useEffect(() => {
         onChangeFromPrice(fromValue);
@@ -45,6 +41,13 @@ function ConverterPage() {
         setFromValue(Number(result.toFixed(2)));
         setToValue(value);
     };
+
+    React.useEffect(() => {
+        valutes.forEach(el => (currencies.current[el.CharCode] = el.Value));
+        charCodes.current = [];
+        onChangeFromPrice(1)
+    }, []);
+
     return (
         <View>
             <Section title="Конвертер">
@@ -78,7 +81,6 @@ const styles = StyleSheet.create({
         display: 'flex',
         flexDirection: 'column',
         gap: 20,
-        paddingHorizontal: 30
     },
 });
 export default ConverterPage;
