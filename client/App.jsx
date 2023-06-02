@@ -34,7 +34,6 @@ function App() {
         console.log('Data update successfully')
     }
 
-
     return (
         <WithSplashScreen isAppReady={isAppReady} style={{height: '100%'}}>
             <SafeAreaView style={{height: '100%'}}>
