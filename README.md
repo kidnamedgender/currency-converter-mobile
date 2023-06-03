@@ -1,4 +1,4 @@
-# areal-articles
+# currency-converter-mobile
 
 ## Устанавливаем репозиторий
 
@@ -51,7 +51,7 @@ PORT
 
 /server/knexfile.ts
 
-## Мигрируем таблицы и сиды
+## Мигрируем таблицы
 
 ```
 npx knex migrate:latest
