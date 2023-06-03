@@ -23,7 +23,7 @@ function Input({value, currency, onChangeCurrency, onChangeValue, currencies}) {
           style={styles.input}
           keyboardType={'number-pad'}
           onChangeText={e => onChangeVal(e)}
-          placeholder="0.00"
+          placeholder="0.000"
           value={String(value)}
           placeholderTextColor={'rgba(0,0,0,0.4)'}></TextInput>
       </View>

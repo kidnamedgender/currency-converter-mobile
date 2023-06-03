@@ -40,7 +40,8 @@ function ValutePage() {
               Previous={el.Previous}
               charCode={el.CharCode}
               numCode={el.NumCode}
-              Value={el.Value}></ValuteItem>
+              Value={el.Value}
+              Nominal={el.Nominal}></ValuteItem>
           ))}
         </View>
       </Section>

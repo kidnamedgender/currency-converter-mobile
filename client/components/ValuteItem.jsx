@@ -1,7 +1,14 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 
-export default function ValuteItem({numCode, charCode, Name, Value, Previous}) {
+export default function ValuteItem({
+  numCode,
+  charCode,
+  Name,
+  Value,
+  Previous,
+  Nominal,
+}) {
   return (
     <View style={styles.container}>
       <View
@@ -14,7 +21,9 @@ export default function ValuteItem({numCode, charCode, Name, Value, Previous}) {
         </Text>
       </View>
       <View>
-        <Text style={{...styles.name, ...styles.base_text_color}}>{Name}</Text>
+        <Text style={{...styles.name, ...styles.base_text_color}}>
+          {Nominal} {Name}
+        </Text>
       </View>
       <View style={styles.values}>
         <Text
