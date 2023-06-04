@@ -4,10 +4,8 @@ import {getValutes} from '../store/slices/valuteSlice';
 import {StyleSheet, Text, View} from 'react-native';
 import Section from '../components/Section';
 import ValuteItem from '../components/ValuteItem';
-import {useNavigate} from 'react-router-native';
 
 function ValutePage() {
-  const navigate = useNavigate();
   const dispatch = useDispatch();
   const {valutes, status} = useSelector(state => state.valute);
 

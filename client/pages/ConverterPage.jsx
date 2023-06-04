@@ -1,12 +1,10 @@
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
 import Section from '../components/Section';
-import {useNavigate} from 'react-router-native';
 import Input from '../components/Input';
 import {useSelector} from 'react-redux';
 
 function ConverterPage() {
-  const navigate = useNavigate();
   const {valutes} = useSelector(state => state.valute);
 
   const [fromCurrency, setFromCurrency] = React.useState('USD');
