@@ -2,6 +2,12 @@
 #
 .DS_Store
 
+# env
+*.env
+*.env.example
+*.env.local
+*.env.staging
+
 # Xcode
 #
 build/

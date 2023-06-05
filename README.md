@@ -34,17 +34,18 @@ cd server
 npm i
 ```
 
-## Заполняем переменные окружения актуальными данными
+## Заполняем переменные окружения сервера актуальными данными
 
 /server/.env
 
 ```
-DB_HOST=postgres
-DB_USER
-DB
-DB_PASSWORD
-DB_PORT
-PORT
+DB_HOST=
+DB_USER=
+DB=
+DB_PASSWORD=
+DB_PORT=
+PORT=
+URL=
 ```
 
 ## Заполняем конфигурацию миграции актуальными данными
@@ -63,22 +64,18 @@ npx knex migrate:latest
 npm run start:dev
 ```
 
-## Заполняем интсанс axios`а актуальным URL
+## Заполняем переменные окружения клиента актуальным URL
 
-/client/axios.js
+/client/.env
 
 ```
-baseURL: `http://[IP устройства]:[Ваш порт]`,
+HOST=
+PORT=
 ```
 
 ## Запускаем клиент
 
 ```
 npx react-native start
-```
-
-## В новом терминале запускаем проект (эмулятор или физическое устройство)
-
-```
-npx react-native run-android
+a
 ```

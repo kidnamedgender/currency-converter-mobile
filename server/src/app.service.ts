@@ -2,6 +2,9 @@ import {HttpService} from '@nestjs/axios';
 import {Inject, Injectable} from '@nestjs/common';
 import {Cron, CronExpression} from '@nestjs/schedule';
 import {firstValueFrom} from 'rxjs';
+import {config} from "dotenv";
+
+config();
 
 @Injectable()
 export class AppService {
@@ -25,7 +28,7 @@ export class AppService {
         try {
             const {data} = await firstValueFrom(
                 this.httpService
-                    .get('https://www.cbr-xml-daily.ru/daily_json.js')
+                    .get(process.env.URL)
                     .pipe(),
             );
 

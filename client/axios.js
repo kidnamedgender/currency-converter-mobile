@@ -1,5 +1,6 @@
 import axios from 'axios';
+import Config from "react-native-config";
 
 export const instance = axios.create({
-  baseURL: `http://192.168.1.73:4444`,
+    baseURL: `http://${Config.HOST}:${Config.PORT}`,
 });
