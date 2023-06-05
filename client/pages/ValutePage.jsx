@@ -6,51 +6,52 @@ import Section from '../components/Section';
 import ValuteItem from '../components/ValuteItem';
 
 function ValutePage() {
-  const dispatch = useDispatch();
-  const {valutes, status} = useSelector(state => state.valute);
+    const dispatch = useDispatch();
+    const {valutes, status} = useSelector(state => state.valute);
 
-  React.useEffect(() => {
-    dispatch(getValutes());
-  }, [dispatch]);
+    React.useEffect(() => {
+        dispatch(getValutes());
+    }, [dispatch]);
 
-  if (status === 'pending') {
+    if (status === 'pending') {
+        return (
+            <Section>
+                <Text
+                    style={{
+                        textAlign: 'center',
+                        fontSize: 24,
+                        color: '#000',
+                    }}>
+                    Загрузка...
+                </Text>
+            </Section>
+        );
+    }
+
     return (
-      <Text
-        style={{
-          textAlign: 'center',
-          marginTop: 20,
-          fontSize: 24,
-          color: '#000',
-        }}>
-        Загрузка...
-      </Text>
-    );
-  }
-
-  return (
-    <View>
-      <Section title="Валюты">
-        <View style={styles.valutes}>
-          {valutes?.map(el => (
-            <ValuteItem
-              key={el.id}
-              Name={el.Name}
-              Previous={el.Previous}
-              charCode={el.CharCode}
-              numCode={el.NumCode}
-              Value={el.Value}
-              Nominal={el.Nominal}></ValuteItem>
-          ))}
+        <View>
+            <Section title="Валюты">
+                <View style={styles.valutes}>
+                    {valutes?.map(el => (
+                        <ValuteItem
+                            key={el.id}
+                            Name={el.Name}
+                            Previous={el.Previous}
+                            charCode={el.CharCode}
+                            numCode={el.NumCode}
+                            Value={el.Value}
+                            Nominal={el.Nominal}></ValuteItem>
+                    ))}
+                </View>
+            </Section>
         </View>
-      </Section>
-    </View>
-  );
+    );
 }
 
 const styles = StyleSheet.create({
-  valutes: {
-    display: 'flex',
-    flexDirection: 'column',
-  },
+    valutes: {
+        display: 'flex',
+        flexDirection: 'column',
+    },
 });
 export default ValutePage;

@@ -1,16 +1,16 @@
 import React from 'react';
-import {SafeAreaView, ScrollView, StyleSheet, View} from 'react-native';
-
-import {useSwipe} from './hooks/SwipeHook';
+import {Dimensions, SafeAreaView, ScrollView, StyleSheet, TouchableOpacity, View} from 'react-native';
 
 import {store} from './store';
 import {Provider, useDispatch} from 'react-redux';
-import {WithSplashScreen} from './components/Splash';
 
 import {NativeRouter, Route, Routes, useNavigate} from 'react-router-native';
-import ConverterPage from './pages/ConverterPage';
-import ValutePage from './pages/ValutePage';
 import {getValutes} from './store/slices/valuteSlice';
+import ValutePage from "./pages/ValutePage";
+import ConverterPage from "./pages/ConverterPage";
+import {WithSplashScreen} from "./components/Splash";
+
+const SCREEN_WIDTH = Dimensions.get("screen").width
 
 function App() {
 
@@ -18,44 +18,44 @@ function App() {
     React.useEffect(() => {
         setIsAppReady(true);
     }, [isAppReady]);
-    const {onTouchStart, onTouchEnd} = useSwipe(
-        onSwipeLeft,
-        onSwipeRight,
-        onSwipeUp,
-        6,
-    );
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
-    function onSwipeLeft() {
+    const handleRight = () => {
         navigate('/converter');
     }
-
-    function onSwipeRight() {
+    const handleLeft = () => {
         navigate('/');
     }
 
-    function onSwipeUp() {
-        dispatch(getValutes());
-        console.log('Data update successfully');
+    const handleScrollUp = (event) => {
+        if (!event.nativeEvent.contentOffset.y) {
+            dispatch(getValutes());
+            console.log('Data update successfully');
+        }
     }
 
     return (
-        <WithSplashScreen isAppReady={isAppReady} style={styles.base}>
-            <SafeAreaView style={styles.base}>
-                <ScrollView
-                    onTouchStart={onTouchStart}
-                    onTouchEnd={onTouchEnd}
-                    style={styles.base}>
-                    <View style={styles.base}>
-                        <Routes>
-                            <Route path={'/'} element={<ValutePage/>}/>
-                            <Route path={'/converter'} element={<ConverterPage/>}/>
-                        </Routes>
-                    </View>
-                </ScrollView>
-            </SafeAreaView>
-        </WithSplashScreen>
+        <View style={{flexDirection: 'row', ...styles.base}}>
+            <TouchableOpacity style={styles.touchable} onPress={handleLeft}>
+            </TouchableOpacity>
+            <WithSplashScreen isAppReady={isAppReady} style={styles.base}>
+                <SafeAreaView style={styles.base}>
+                    <ScrollView
+                        onScrollEndDrag={handleScrollUp}
+                        style={styles.base}>
+                        <View style={styles.base}>
+                            <Routes>
+                                <Route path={'/'} element={<ValutePage/>}/>
+                                <Route path={'/converter'} element={<ConverterPage/>}/>
+                            </Routes>
+                        </View>
+                    </ScrollView>
+                </SafeAreaView>
+            </WithSplashScreen>
+            <TouchableOpacity style={styles.touchable} onPress={handleRight}>
+            </TouchableOpacity>
+        </View>
     );
 }
 
@@ -72,6 +72,11 @@ export default () => {
 const styles = StyleSheet.create({
     base: {
         backgroundColor: '#ffffff',
-        height: '100%',
+        height: '100%'
+    },
+    touchable: {
+        flex: 1,
+        width: (SCREEN_WIDTH / 2),
+        backgroundColor: 'rgba(0,0,0,0.2)'
     },
 });
