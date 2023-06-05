@@ -1,5 +1,7 @@
-import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
+import {Text, View} from 'react-native';
+
+import {styles} from "../assets/styles";
 
 export default function Section({children, title}) {
     return (
@@ -9,16 +11,3 @@ export default function Section({children, title}) {
         </View>
     );
 }
-const styles = StyleSheet.create({
-    sectionContainer: {
-        marginVertical: 32,
-        paddingHorizontal: 24,
-        backgroundColor: '#ffffff',
-        minWidth: 370
-    },
-    sectionTitle: {
-        fontSize: 24,
-        fontWeight: '600',
-        color: '#000000',
-    },
-});

@@ -1,0 +1,9 @@
+{
+  "_comment": "src/localization/ru/translation.json",
+  "demoScope": {
+    "title_valutePage": "Валюты",
+    "title_converterPage": "Конвертер",
+    "loading": "Загрузка...",
+    "lang": "ru"
+  }
+}

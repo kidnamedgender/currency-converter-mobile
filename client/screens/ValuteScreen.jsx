@@ -1,28 +1,36 @@
-import {useDispatch, useSelector} from 'react-redux';
 import React from 'react';
-import {getValutes} from '../store/slices/valuteSlice';
-import {StyleSheet, Text, View} from 'react-native';
+import {Text, View} from 'react-native';
+
 import Section from '../components/Section';
 import ValuteItem from '../components/ValuteItem';
 
-function ValutePage() {
+import {useDispatch, useSelector} from 'react-redux';
+import {getValutes} from '../store/slices/valuteSlice';
+
+
+import {useTranslation} from "react-i18next";
+
+import {styles} from "../assets/styles";
+
+function ValuteScreen() {
+
+
     const dispatch = useDispatch();
     const {valutes, status} = useSelector(state => state.valute);
+
+    const {t} = useTranslation();
 
     React.useEffect(() => {
         dispatch(getValutes());
     }, [dispatch]);
 
+
     if (status === 'pending') {
         return (
             <Section>
                 <Text
-                    style={{
-                        textAlign: 'center',
-                        fontSize: 24,
-                        color: '#000',
-                    }}>
-                    Загрузка...
+                    style={styles.loading}>
+                    {t('demoScope.loading')}
                 </Text>
             </Section>
         );
@@ -30,8 +38,8 @@ function ValutePage() {
 
     return (
         <View>
-            <Section title="Валюты">
-                <View style={styles.valutes}>
+            <Section title={t('demoScope.title_valutePage')}>
+                <View style={styles.list}>
                     {valutes?.map(el => (
                         <ValuteItem
                             key={el.id}
@@ -48,10 +56,4 @@ function ValutePage() {
     );
 }
 
-const styles = StyleSheet.create({
-    valutes: {
-        display: 'flex',
-        flexDirection: 'column',
-    },
-});
-export default ValutePage;
+export default ValuteScreen;

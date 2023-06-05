@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from "react";
+import React from "react";
 import {Animated, StyleSheet} from "react-native";
 
 export function WithSplashScreen({children, isAppReady}) {
@@ -18,12 +18,12 @@ const FADE_OUT = "Fade out";
 const HIDDEN = "Hidden";
 
 export const Splash = ({isAppReady}) => {
-    const containerOpacity = useRef(new Animated.Value(1)).current;
-    const imageOpacity = useRef(new Animated.Value(0)).current;
+    const containerOpacity = React.useRef(new Animated.Value(1)).current;
+    const imageOpacity = React.useRef(new Animated.Value(0)).current;
 
-    const [state, setState] = useState(LOADING_IMAGE);
+    const [state, setState] = React.useState(LOADING_IMAGE);
 
-    useEffect(() => {
+    React.useEffect(() => {
         if (state === FADE_IN_IMAGE) {
             Animated.timing(imageOpacity, {
                 toValue: 1,
@@ -35,7 +35,7 @@ export const Splash = ({isAppReady}) => {
         }
     }, [imageOpacity, state]);
 
-    useEffect(() => {
+    React.useEffect(() => {
         if (state === WAIT_FOR_APP_TO_BE_READY) {
             if (isAppReady) {
                 setState(FADE_OUT);
@@ -43,7 +43,7 @@ export const Splash = ({isAppReady}) => {
         }
     }, [isAppReady, state]);
 
-    useEffect(() => {
+    React.useEffect(() => {
         if (state === FADE_OUT) {
             Animated.timing(containerOpacity, {
                 toValue: 0,

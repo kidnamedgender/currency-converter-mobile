@@ -1,0 +1,9 @@
+{
+  "_comment": "src/localization/en/translation.json",
+  "demoScope": {
+    "title_valutePage": "Valutes",
+    "title_converterPage": "Converter",
+    "loading": "Loading...",
+    "lang": "en"
+  }
+}

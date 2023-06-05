@@ -1,19 +1,24 @@
 import React from 'react';
-import {Dimensions, SafeAreaView, ScrollView, StyleSheet, TouchableOpacity, View} from 'react-native';
+import {SafeAreaView, ScrollView, TouchableOpacity, View} from 'react-native';
+import SelectDropdown from "react-native-select-dropdown";
 
 import {store} from './store';
 import {Provider, useDispatch} from 'react-redux';
-
-import {NativeRouter, Route, Routes, useNavigate} from 'react-router-native';
 import {getValutes} from './store/slices/valuteSlice';
-import ValutePage from "./pages/ValutePage";
-import ConverterPage from "./pages/ConverterPage";
+
+import {NativeRouter, useNavigate} from 'react-router-native';
+import {Router} from "./router";
+
 import {WithSplashScreen} from "./components/Splash";
 
-const SCREEN_WIDTH = Dimensions.get("screen").width
+import {useTranslation} from "react-i18next";
+
+import './langs/i18n'
+
+import {styles} from "./assets/styles";
 
 function App() {
-
+    const {t, i18n} = useTranslation()
     const [isAppReady, setIsAppReady] = React.useState(false);
     React.useEffect(() => {
         setIsAppReady(true);
@@ -27,14 +32,15 @@ function App() {
     const handleLeft = () => {
         navigate('/');
     }
-
+    const changeLanguageHandler = (lang) => {
+        i18n.changeLanguage(lang)
+    }
     const handleScrollUp = (event) => {
         if (!event.nativeEvent.contentOffset.y) {
             dispatch(getValutes());
             console.log('Data update successfully');
         }
     }
-
     return (
         <View style={{flexDirection: 'row', ...styles.base}}>
             <TouchableOpacity style={styles.touchable} onPress={handleLeft}>
@@ -44,11 +50,13 @@ function App() {
                     <ScrollView
                         onScrollEndDrag={handleScrollUp}
                         style={styles.base}>
+                        <SelectDropdown data={i18n.languages} defaultValue={i18n.language}
+                                        onSelect={value => changeLanguageHandler(value)}
+                                        buttonStyle={{...styles.lang_block, ...styles.full_width}}>
+                        </SelectDropdown>
+
                         <View style={styles.base}>
-                            <Routes>
-                                <Route path={'/'} element={<ValutePage/>}/>
-                                <Route path={'/converter'} element={<ConverterPage/>}/>
-                            </Routes>
+                            <Router></Router>
                         </View>
                     </ScrollView>
                 </SafeAreaView>
@@ -68,15 +76,3 @@ export default () => {
         </NativeRouter>
     );
 };
-
-const styles = StyleSheet.create({
-    base: {
-        backgroundColor: '#ffffff',
-        height: '100%'
-    },
-    touchable: {
-        flex: 1,
-        width: (SCREEN_WIDTH / 2),
-        backgroundColor: 'rgba(0,0,0,0.2)'
-    },
-});

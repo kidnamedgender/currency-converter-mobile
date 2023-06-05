@@ -1,11 +1,12 @@
-import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
+import {Text, View} from 'react-native';
+import {styles} from "../assets/styles";
 
 export default function ValuteItem({
                                        numCode,
                                        charCode,
                                        Name,
-                                       Value,
+                                       Value = 1,
                                        Previous,
                                        Nominal,
                                    }) {
@@ -52,51 +53,4 @@ export default function ValuteItem({
             </View>
         </View>
     );
-}
-
-const styles = StyleSheet.create({
-    base_text_color: {
-        color: '#000000',
-    },
-    container: {
-        display: 'flex',
-        justifyContent: 'space-between',
-        flexDirection: 'row',
-        alignItems: 'center',
-        marginTop: 20,
-        gap: 15,
-        padding: 10,
-        backgroundColor: 'rgba(0,0,0,0.04)',
-    },
-    red: {
-        color: 'red',
-    },
-    green: {
-        color: 'green',
-    },
-    opacity: {
-        opacity: 0.8,
-    },
-    name: {
-        width: 200,
-        textAlign: 'center',
-    },
-    bold: {
-        fontWeight: 'bold',
-    },
-    values: {
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'flex-end',
-    },
-    codes: {
-        display: 'flex',
-    },
-    fontSize_l: {
-        fontSize: 12,
-    },
-    percents: {
-        fontSize: 10,
-        color: 'blue',
-    },
-});
+};

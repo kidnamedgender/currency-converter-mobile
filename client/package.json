@@ -12,13 +12,19 @@
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.5",
     "axios": "^1.4.0",
+    "babel-plugin-react-native-classname-to-style": "^1.2.2",
+    "babel-plugin-react-native-platform-specific-extensions": "^1.1.1",
+    "i18next": "^22.5.0",
     "react": "18.2.0",
+    "react-i18next": "^12.3.1",
     "react-native": "0.71.8",
     "react-native-config": "^1.5.1",
+    "react-native-sass-transformer": "^2.0.0",
     "react-native-select-dropdown": "^3.3.3",
     "react-native-vector-icons": "^9.2.0",
     "react-redux": "^8.0.7",
-    "react-router-native": "^6.11.2"
+    "react-router-native": "^6.11.2",
+    "sass": "^1.62.1"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
