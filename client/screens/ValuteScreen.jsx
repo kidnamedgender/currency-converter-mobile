@@ -10,7 +10,7 @@ import {getValutes} from '../store/slices/valuteSlice';
 
 import {useTranslation} from "react-i18next";
 
-import {styles} from "../assets/styles";
+import style from '../assets/style.scss'
 
 function ValuteScreen() {
 
@@ -29,7 +29,7 @@ function ValuteScreen() {
         return (
             <Section>
                 <Text
-                    style={styles.loading}>
+                    style={style.loading}>
                     {t('demoScope.loading')}
                 </Text>
             </Section>
@@ -39,7 +39,7 @@ function ValuteScreen() {
     return (
         <View>
             <Section title={t('demoScope.title_valutePage')}>
-                <View style={styles.list}>
+                <View style={style.list}>
                     {valutes?.map(el => (
                         <ValuteItem
                             key={el.id}

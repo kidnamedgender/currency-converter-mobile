@@ -1,6 +1,8 @@
 import React from "react";
 import {Animated, StyleSheet} from "react-native";
 
+import style from '../assets/style.scss'
+
 export function WithSplashScreen({children, isAppReady}) {
     return (
         <>
@@ -61,30 +63,26 @@ export const Splash = ({isAppReady}) => {
     return (
         <Animated.View
             collapsable={false}
-            style={[style.container, {opacity: containerOpacity}]}
+            style={[styles.container, {opacity: containerOpacity}]}
         >
             <Animated.Image
-                source={require("../assets/android/drawable-hdpi/splash-image.png")}
+                source={require("../assets/splash_images/android/drawable-hdpi/splash-image.png")}
                 fadeDuration={0}
                 onLoad={() => {
                     setState(FADE_IN_IMAGE);
                 }}
-                style={[style.image, {opacity: imageOpacity}]}
+                style={{...style.splash_image, opacity: imageOpacity}}
                 resizeMode="contain"
             />
         </Animated.View>
     );
 };
 
-const style = StyleSheet.create({
+const styles = StyleSheet.create({
     container: {
         ...StyleSheet.absoluteFillObject,
-        backgroundColor: '#ffffff',
+        backgroundColor: '#fff',
         alignItems: "center",
         justifyContent: "center",
-    },
-    image: {
-        width: 250,
-        height: 250,
     },
 });

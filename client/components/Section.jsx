@@ -1,12 +1,12 @@
 import React from 'react';
 import {Text, View} from 'react-native';
 
-import {styles} from "../assets/styles";
+import style from "../assets/style.scss"
 
 export default function Section({children, title}) {
     return (
-        <View style={styles.sectionContainer}>
-            <Text style={styles.sectionTitle}>{title}</Text>
+        <View style={style.section_container}>
+            <Text style={{...style.section_title, ...style.bold}}>{title}</Text>
             <View>{children}</View>
         </View>
     );

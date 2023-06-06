@@ -6,7 +6,8 @@ import Input from '../components/Input';
 import {useSelector} from 'react-redux';
 
 import {useTranslation} from "react-i18next";
-import {styles} from "../assets/styles";
+
+import style from '../assets/style.scss'
 
 function ConverterScreen() {
     const {valutes} = useSelector(state => state.valute);
@@ -57,8 +58,8 @@ function ConverterScreen() {
     return (
         <View>
             <Section title={t('demoScope.title_converterPage')}>
-                <View style={styles.list}>
-                    <View style={styles.wrapper}>
+                <View style={style.list}>
+                    <View style={style.wrapper}>
                         <Input
                             value={fromValue}
                             currency={fromCurrency}

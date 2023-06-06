@@ -15,7 +15,7 @@ import {useTranslation} from "react-i18next";
 
 import './langs/i18n'
 
-import {styles} from "./assets/styles";
+import style from './assets/style.scss'
 
 function App() {
     const {t, i18n} = useTranslation()
@@ -42,26 +42,26 @@ function App() {
         }
     }
     return (
-        <View style={{flexDirection: 'row', ...styles.base}}>
-            <TouchableOpacity style={styles.touchable} onPress={handleLeft}>
+        <View style={{flexDirection: 'row', ...style.base}}>
+            <TouchableOpacity style={style.touchable} onPress={handleLeft}>
             </TouchableOpacity>
-            <WithSplashScreen isAppReady={isAppReady} style={styles.base}>
-                <SafeAreaView style={styles.base}>
+            <WithSplashScreen isAppReady={isAppReady} style={style.base}>
+                <SafeAreaView style={style.base}>
                     <ScrollView
                         onScrollEndDrag={handleScrollUp}
-                        style={styles.base}>
+                        style={style.base}>
                         <SelectDropdown data={i18n.languages} defaultValue={i18n.language}
                                         onSelect={value => changeLanguageHandler(value)}
-                                        buttonStyle={{...styles.lang_block, ...styles.full_width}}>
+                                        buttonStyle={{...style.lang_block, ...style.full_width}}>
                         </SelectDropdown>
 
-                        <View style={styles.base}>
+                        <View style={style.base}>
                             <Router></Router>
                         </View>
                     </ScrollView>
                 </SafeAreaView>
             </WithSplashScreen>
-            <TouchableOpacity style={styles.touchable} onPress={handleRight}>
+            <TouchableOpacity style={style.touchable} onPress={handleRight}>
             </TouchableOpacity>
         </View>
     );

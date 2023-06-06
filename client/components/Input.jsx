@@ -3,7 +3,7 @@ import {TextInput, View} from 'react-native';
 
 import SelectDropdown from 'react-native-select-dropdown';
 
-import {styles} from "../assets/styles";
+import style from '../assets/style.scss'
 
 function Input({value, currency, onChangeCurrency, onChangeValue, currencies}) {
     const onChangeVal = value => {
@@ -20,10 +20,10 @@ function Input({value, currency, onChangeCurrency, onChangeValue, currencies}) {
                     data={currencies.current}
                     onSelect={value => onChangeCur(value)}
                     defaultValue={currency}
-                    buttonStyle={styles.full_width}
+                    buttonStyle={style.full_width}
                     search={true}></SelectDropdown>
                 <TextInput
-                    style={styles.input}
+                    style={style.input}
                     keyboardType={'number-pad'}
                     onChangeText={e => onChangeVal(e)}
                     placeholder="0.000"
