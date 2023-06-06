@@ -1,7 +1,7 @@
 import React from "react";
 import {Animated, StyleSheet} from "react-native";
 
-import style from '../assets/style.scss'
+import style from './style.module.scss'
 
 export function WithSplashScreen({children, isAppReady}) {
     return (
@@ -66,7 +66,7 @@ export const Splash = ({isAppReady}) => {
             style={[styles.container, {opacity: containerOpacity}]}
         >
             <Animated.Image
-                source={require("../assets/splash_images/android/drawable-hdpi/splash-image.png")}
+                source={require("../../assets/splash_images/android/drawable-hdpi/splash-image.png")}
                 fadeDuration={0}
                 onLoad={() => {
                     setState(FADE_IN_IMAGE);

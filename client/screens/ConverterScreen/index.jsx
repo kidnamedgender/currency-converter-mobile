@@ -1,15 +1,15 @@
 import React from 'react';
 import {View} from 'react-native';
-import Section from '../components/Section';
-import Input from '../components/Input';
+import Section from '../../components/Section';
+import Input from '../../components/Input';
 
 import {useSelector} from 'react-redux';
 
 import {useTranslation} from "react-i18next";
 
-import style from '../assets/style.scss'
+import style from './style.module.scss'
 
-function ConverterScreen() {
+function Index() {
     const {valutes} = useSelector(state => state.valute);
 
     const [fromCurrency, setFromCurrency] = React.useState('USD');
@@ -81,4 +81,4 @@ function ConverterScreen() {
     );
 }
 
-export default ConverterScreen;
+export default Index;

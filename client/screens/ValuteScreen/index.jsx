@@ -1,18 +1,17 @@
 import React from 'react';
 import {Text, View} from 'react-native';
 
-import Section from '../components/Section';
-import ValuteItem from '../components/ValuteItem';
+import Section from '../../components/Section';
+import Index from '../../components/ValuteItem';
 
 import {useDispatch, useSelector} from 'react-redux';
-import {getValutes} from '../store/slices/valuteSlice';
-
+import {getValutes} from '../../store/slices/valuteSlice';
 
 import {useTranslation} from "react-i18next";
 
-import style from '../assets/style.scss'
+import style from './style.module.scss'
 
-function ValuteScreen() {
+function Index() {
 
 
     const dispatch = useDispatch();
@@ -27,12 +26,23 @@ function ValuteScreen() {
 
     if (status === 'pending') {
         return (
-            <Section>
+            <Index>
                 <Text
-                    style={style.loading}>
+                    style={style.status_block}>
                     {t('demoScope.loading')}
                 </Text>
-            </Section>
+            </Index>
+        );
+    }
+
+    if (status === "rejected"){
+        return (
+            <Index>
+                <Text
+                    style={style.status_block}>
+                    {t("demoScope.error")}
+                </Text>
+            </Index>
         );
     }
 
@@ -41,14 +51,14 @@ function ValuteScreen() {
             <Section title={t('demoScope.title_valutePage')}>
                 <View style={style.list}>
                     {valutes?.map(el => (
-                        <ValuteItem
+                        <Index
                             key={el.id}
                             Name={el.Name}
                             Previous={el.Previous}
                             charCode={el.CharCode}
                             numCode={el.NumCode}
                             Value={el.Value}
-                            Nominal={el.Nominal}></ValuteItem>
+                            Nominal={el.Nominal}></Index>
                     ))}
                 </View>
             </Section>
@@ -56,4 +66,4 @@ function ValuteScreen() {
     );
 }
 
-export default ValuteScreen;
+export default Index;

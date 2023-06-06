@@ -1,8 +1,8 @@
 import React from 'react';
 import {Text, View} from 'react-native';
-import style from "../assets/style.scss"
+import style from "./style.module.scss"
 
-export default function ValuteItem({
+export default function Index({
                                        numCode,
                                        charCode,
                                        Name,
@@ -12,6 +12,7 @@ export default function ValuteItem({
                                    }) {
     return (
         <View style={style.container}>
+            {/*todo доделай стили*/}
             <View
                 style={{...style.list, ...style.opacity, ...style.base_text_color}}>
                 <Text style={{...style.base_text_color, ...style.opacity}}>

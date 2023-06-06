@@ -3,9 +3,9 @@ import {TextInput, View} from 'react-native';
 
 import SelectDropdown from 'react-native-select-dropdown';
 
-import style from '../assets/style.scss'
+import style from './style.module.scss'
 
-function Input({value, currency, onChangeCurrency, onChangeValue, currencies}) {
+function Index({value, currency, onChangeCurrency, onChangeValue, currencies}) {
     const onChangeVal = value => {
         onChangeValue(value);
     };
@@ -20,7 +20,7 @@ function Input({value, currency, onChangeCurrency, onChangeValue, currencies}) {
                     data={currencies.current}
                     onSelect={value => onChangeCur(value)}
                     defaultValue={currency}
-                    buttonStyle={style.full_width}
+                    buttonStyle={style.btn}
                     search={true}></SelectDropdown>
                 <TextInput
                     style={style.input}
@@ -34,4 +34,4 @@ function Input({value, currency, onChangeCurrency, onChangeValue, currencies}) {
     );
 }
 
-export default Input;
+export default Index;
