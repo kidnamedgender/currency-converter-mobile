@@ -1,0 +1,17 @@
+.root {
+  width: 50%;
+  background-color: rgba(0, 0, 0, 0.2);
+  padding: 10px;
+  border-bottom-width: 1px;
+  border-right-width: 1px;
+  border-style: solid;
+}
+
+.active {
+  background-color: rgba(123, 231, 123, 1);
+}
+
+.title {
+  text-align: center;
+  color: black;
+}

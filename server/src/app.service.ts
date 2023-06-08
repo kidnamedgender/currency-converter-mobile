@@ -1,52 +1,62 @@
-import {HttpService} from '@nestjs/axios';
-import {Inject, Injectable} from '@nestjs/common';
-import {Cron, CronExpression} from '@nestjs/schedule';
-import {firstValueFrom} from 'rxjs';
-import {config} from "dotenv";
+import { HttpService } from '@nestjs/axios';
+import { Injectable } from '@nestjs/common';
+import { Cron, CronExpression } from '@nestjs/schedule';
+import { firstValueFrom } from 'rxjs';
+import knexConfig from '../knexfile';
+import knex from 'knex';
+import * as process from 'process';
 
-config();
+const con = knex(knexConfig.development);
 
 @Injectable()
 export class AppService {
-    constructor(
-        @Inject('PG_CONNECTION') private conn: any,
-        private readonly httpService: HttpService,
-    ) {
-    }
+    constructor(private readonly httpService: HttpService) {}
 
-    async getValutes(): Promise<string> {
+    async getValutes(): Promise<object[]> {
         try {
-            const res = await this.conn.query('SELECT * FROM valute');
+            const res = await con.raw('SELECT * FROM valute');
             return res.rows;
         } catch (err) {
-            return 'Не удалось получить валюты ' + err;
+            console.log('Не удалось получить валюты ' + err);
         }
     }
 
-    @Cron(CronExpression.EVERY_30_MINUTES)
-    async handleCron(): Promise<string> {
+    @Cron(CronExpression.EVERY_5_SECONDS)
+    async handleCron(): Promise<void> {
         try {
-            const {data} = await firstValueFrom(
-                this.httpService
-                    .get(process.env.URL)
-                    .pipe(),
+            // httpService возвращает Observable, для преобразования в Promise исользуется firstValueFrom (в прошлом .toPromise())
+            const { data } = await firstValueFrom(
+                this.httpService.get(process.env.URL),
             );
 
-            await this.conn.query('TRUNCATE TABLE valute');
-            const valutes = Object.keys(data.Valute).map((key) => {
-                return data.Valute[key];
+            await con.raw('TRUNCATE TABLE valute');
+            let values = '';
+            Object.keys(data.Valute).map((key) => {
+                values += `('${data.Valute[key].ID}',
+                 ${data.Valute[key].NumCode}, 
+                 '${data.Valute[key].CharCode}', 
+                 ${data.Valute[key].Nominal}, 
+                 '${data.Valute[key].Name}', 
+                 ${data.Valute[key].Value}, 
+                 ${data.Valute[key].Previous}),`;
             });
 
-            for (const currentValute of valutes) {
-                await this.conn.query(
-                    `INSERT INTO valute (id, "NumCode", "CharCode", "Nominal", "Name", "Value", "Previous")
-                     VALUES ('${currentValute.ID}', '${currentValute.NumCode}', '${currentValute.CharCode}',
-                             '${currentValute.Nominal}', '${currentValute.Name}', '${currentValute.Value}',
-                             '${currentValute.Previous}')`,
-                );
-            }
+            values = values.slice(0, -1) + ';';
+
+            const raw = `INSERT INTO valute (:ID:, :numCode:, :charCode:, :nominal:, :name:, :value:, :previous:)
+                         VALUES ${values}`;
+
+            // todo  https://knexjs.org/guide/raw.html#raw-parameter-binding сделать через бинд
+            await con.raw(raw, {
+                ID: 'id',
+                numCode: 'NumCode',
+                charCode: 'CharCode',
+                nominal: 'Nominal',
+                name: 'Name',
+                value: 'Value',
+                previous: 'Previous',
+            });
             console.log('Данные успешно обновлены');
-            return data;
         } catch (err) {
             console.log('Что-то пошло не так... ' + err);
         }

@@ -1,10 +1,9 @@
 import {NestFactory} from '@nestjs/core';
 import {AppModule} from './app.module';
-import {config} from 'dotenv';
-import {DocumentBuilder, SwaggerModule} from "@nestjs/swagger";
 
-config();
+import {DocumentBuilder, SwaggerModule} from '@nestjs/swagger';
 
+// todo Привести к виду - https://docs.arealidea.com/services/development_web/notes/nestjs.html
 const bootstrap = async () => {
     try {
         const app = await NestFactory.create(AppModule);
@@ -13,9 +12,9 @@ const bootstrap = async () => {
             .setTitle('Currencies')
             .setDescription('GET current currencies API')
             .setVersion('1.0')
-            .build()
-        const document = SwaggerModule.createDocument(app, config)
-        SwaggerModule.setup('api', app, document)
+            .build();
+        const document = SwaggerModule.createDocument(app, config);
+        SwaggerModule.setup('api', app, document);
 
         app.enableCors({
             origin: `http://localhost:${process.env.PORT}`,
@@ -28,5 +27,5 @@ const bootstrap = async () => {
     } catch (err) {
         console.log('Не удалось запустить сервер ' + err);
     }
-}
+};
 bootstrap();

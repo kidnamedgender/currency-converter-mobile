@@ -1,16 +1,18 @@
 import type { Knex } from 'knex';
+
 import { config } from 'dotenv';
 config();
 
 const knexConfig: { [key: string]: Knex.Config } = {
   development: {
-    client: 'postgresql',
+    client: 'pg',
+    version: '14.8',
     connection: {
-      database: process.env.DB,
-      user: process.env.DB_USER,
-      password: process.env.DB_PASSWORD,
+      database: process.env.POSTGRES_DB,
+      user: process.env.POSTGRES_USER,
+      password: process.env.POSTGRES_PASSWORD,
     },
   },
 };
 
-module.exports = knexConfig;
+export default  knexConfig

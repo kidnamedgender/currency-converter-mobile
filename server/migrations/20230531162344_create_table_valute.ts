@@ -14,6 +14,7 @@ export async function up(knex: Knex): Promise<void> {
   `);
 }
 
+// todo на бой проектах так делать
 export async function down(knex: Knex): Promise<void> {
   return knex.raw(`
     DROP TABLE valute
