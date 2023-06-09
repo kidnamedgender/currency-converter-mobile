@@ -46,8 +46,6 @@ export class AppService {
 
             const raw = `INSERT INTO valute (:ID:, :numCode:, :charCode:, :nominal:, :name:, :value:, :previous:)
                          VALUES ${values}`;
-
-            // todo  https://knexjs.org/guide/raw.html#raw-parameter-binding сделать через бинд
             await this.knex.raw(raw, {
                 ID: 'id',
                 numCode: 'NumCode',

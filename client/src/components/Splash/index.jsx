@@ -48,7 +48,7 @@ const Splash = ({isAppReady}) => {
   }, [isAppReady, state]);
 
   React.useEffect(() => {
-    if (state === FADE_OUT) {
+    const imageIsGone = () => {
       Animated.timing(containerOpacity, {
         toValue: 0,
         duration: 600, // Fade out duration
@@ -57,8 +57,18 @@ const Splash = ({isAppReady}) => {
       }).start(() => {
         setState(HIDDEN);
       });
+    };
+
+    if (state === FADE_OUT) {
+      Animated.timing(imageOpacity, {
+        toValue: 0,
+        duration: 800, // Fade out duration
+        useNativeDriver: true,
+      }).start(() => {
+        imageIsGone();
+      });
     }
-  }, [containerOpacity, state]);
+  }, [containerOpacity, imageOpacity, state]);
 
   if (state === HIDDEN) {
     return null;

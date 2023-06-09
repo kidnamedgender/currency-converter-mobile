@@ -2,8 +2,6 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
-import { config } from 'dotenv';
-config();
 
 // todo Привести к виду - https://docs.arealidea.com/services/development_web/notes/nestjs.html
 const bootstrap = async () => {
