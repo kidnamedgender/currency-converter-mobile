@@ -2,10 +2,11 @@ import React from 'react';
 import {View} from 'react-native';
 import {useSelector} from 'react-redux';
 import {useTranslation} from 'react-i18next';
-import Section from '../../components/Section';
+import Section from '../../components/Title';
 import Input from '../../components/Input';
 
 import style from './style.module.scss';
+import Title from '../../components/Title';
 
 const ConverterScreen = () => {
   const {valutes} = useSelector(state => state.valute);
@@ -61,26 +62,25 @@ const ConverterScreen = () => {
 
   return (
     <View>
-      <Section title={t('demoScope.title_converterPage')}>
-        <View style={style.list}>
-          <View style={style.wrapper}>
-            <Input
-              value={fromValue}
-              currency={fromCurrency}
-              onChangeCurrency={setFromCurrency}
-              onChangeValue={onChangeFromPrice}
-              currencies={charCodes}
-            />
-            <Input
-              value={toValue}
-              currency={toCurrency}
-              onChangeCurrency={setToCurrency}
-              onChangeValue={onChangeToPrice}
-              currencies={charCodes}
-            />
-          </View>
+      <Title title={t('demoScope.title_converterPage')} />
+      <View style={style.list}>
+        <View style={style.wrapper}>
+          <Input
+            value={fromValue}
+            currency={fromCurrency}
+            onChangeCurrency={setFromCurrency}
+            onChangeValue={onChangeFromPrice}
+            currencies={charCodes}
+          />
+          <Input
+            value={toValue}
+            currency={toCurrency}
+            onChangeCurrency={setToCurrency}
+            onChangeValue={onChangeToPrice}
+            currencies={charCodes}
+          />
         </View>
-      </Section>
+      </View>
     </View>
   );
 };

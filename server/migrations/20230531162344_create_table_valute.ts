@@ -1,7 +1,7 @@
 import { Knex } from 'knex';
 
 export async function up(knex: Knex): Promise<void> {
-  return knex.raw(`
+    return knex.raw(`
     CREATE TABLE valute (
       id character varying(32) NOT NULL PRIMARY KEY,
       "NumCode" character varying(9) NOT NULL,
@@ -14,9 +14,6 @@ export async function up(knex: Knex): Promise<void> {
   `);
 }
 
-// todo на бой проектах так делать
 export async function down(knex: Knex): Promise<void> {
-  return knex.raw(`
-    DROP TABLE valute
-  `);
+    return null;
 }

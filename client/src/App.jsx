@@ -70,7 +70,7 @@ const App = () => {
                 path="/converter"
               />
             </View>
-            <View style={style.base}>
+            <View style={{...style.base, ...style.content}}>
               <Router />
             </View>
           </ScrollView>

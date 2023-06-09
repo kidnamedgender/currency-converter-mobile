@@ -21,7 +21,7 @@ export class AppService {
         }
     }
 
-    @Cron(CronExpression.EVERY_5_SECONDS)
+    @Cron(CronExpression.EVERY_30_MINUTES)
     async handleCron(): Promise<void> {
         try {
             // httpService возвращает Observable, для преобразования в Promise исользуется firstValueFrom (в прошлом .toPromise())

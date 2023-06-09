@@ -3,12 +3,13 @@ import {Text, View} from 'react-native';
 
 import {useDispatch, useSelector} from 'react-redux';
 import {useTranslation} from 'react-i18next';
-import Section from '../../components/Section';
+import Section from '../../components/Title';
 import ValuteItem from '../../components/ValuteItem';
 
 import {getValutes} from '../../store/slices/valuteSlice';
 
 import style from './style.module.scss';
+import Title from '../../components/Title';
 
 const ValuteScreen = () => {
   const dispatch = useDispatch();
@@ -38,21 +39,20 @@ const ValuteScreen = () => {
 
   return (
     <View>
-      <Section title={t('demoScope.title_valutePage')}>
-        <View style={style.list}>
-          {valutes?.map(el => (
-            <ValuteItem
-              key={el.id}
-              Name={el.Name}
-              Previous={el.Previous}
-              charCode={el.CharCode}
-              numCode={el.NumCode}
-              Value={el.Value}
-              Nominal={el.Nominal}
-            />
-          ))}
-        </View>
-      </Section>
+      <Title title={t('demoScope.title_valutePage')} />
+      <View style={style.list}>
+        {valutes?.map(el => (
+          <ValuteItem
+            key={el.id}
+            Name={el.Name}
+            Previous={el.Previous}
+            charCode={el.CharCode}
+            numCode={el.NumCode}
+            Value={el.Value}
+            Nominal={el.Nominal}
+          />
+        ))}
+      </View>
     </View>
   );
 };
