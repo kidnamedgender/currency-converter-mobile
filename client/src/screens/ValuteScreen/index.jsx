@@ -23,17 +23,17 @@ const ValuteScreen = () => {
 
   if (status === 'pending') {
     return (
-      <Section>
+      <View>
         <Text style={style.status_block}>{t('demoScope.loading')}</Text>
-      </Section>
+      </View>
     );
   }
 
   if (status === 'rejected') {
     return (
-      <Section>
+      <View>
         <Text style={style.status_block}>{t('demoScope.error')}</Text>
-      </Section>
+      </View>
     );
   }
 

@@ -2,26 +2,27 @@ import { HttpService } from '@nestjs/axios';
 import { Injectable } from '@nestjs/common';
 import { Cron, CronExpression } from '@nestjs/schedule';
 import { firstValueFrom } from 'rxjs';
-import knexConfig from '../knexfile';
-import knex from 'knex';
+import { Knex } from 'knex';
 import * as process from 'process';
-
-const con = knex(knexConfig.development);
+import { InjectConnection } from 'nest-knexjs';
 
 @Injectable()
 export class AppService {
-    constructor(private readonly httpService: HttpService) {}
+    constructor(
+        private readonly httpService: HttpService,
+        @InjectConnection() private readonly knex: Knex,
+    ) {}
 
     async getValutes(): Promise<object[]> {
         try {
-            const res = await con.raw('SELECT * FROM valute');
+            const res = await this.knex.raw('SELECT * FROM valute');
             return res.rows;
         } catch (err) {
             console.log('Не удалось получить валюты ' + err);
         }
     }
 
-    @Cron(CronExpression.EVERY_30_MINUTES)
+    @Cron(CronExpression.EVERY_5_SECONDS)
     async handleCron(): Promise<void> {
         try {
             // httpService возвращает Observable, для преобразования в Promise исользуется firstValueFrom (в прошлом .toPromise())
@@ -29,7 +30,7 @@ export class AppService {
                 this.httpService.get(process.env.URL),
             );
 
-            await con.raw('TRUNCATE TABLE valute');
+            await this.knex.raw('TRUNCATE TABLE valute');
             let values = '';
             Object.keys(data.Valute).map((key) => {
                 values += `('${data.Valute[key].ID}',
@@ -47,7 +48,7 @@ export class AppService {
                          VALUES ${values}`;
 
             // todo  https://knexjs.org/guide/raw.html#raw-parameter-binding сделать через бинд
-            await con.raw(raw, {
+            await this.knex.raw(raw, {
                 ID: 'id',
                 numCode: 'NumCode',
                 charCode: 'CharCode',

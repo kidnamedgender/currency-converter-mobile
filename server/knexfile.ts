@@ -4,15 +4,16 @@ import { config } from 'dotenv';
 config();
 
 const knexConfig: { [key: string]: Knex.Config } = {
-  development: {
-    client: 'pg',
-    version: '14.8',
-    connection: {
-      database: process.env.POSTGRES_DB,
-      user: process.env.POSTGRES_USER,
-      password: process.env.POSTGRES_PASSWORD,
+    development: {
+        client: 'pg',
+        version: '14.8',
+        connection: {
+            host: process.env.POSTGRES_HOST,
+            database: process.env.POSTGRES_DB,
+            user: process.env.POSTGRES_USER,
+            password: process.env.POSTGRES_PASSWORD,
+        },
     },
-  },
 };
 
-export default  knexConfig
+export default knexConfig;

@@ -2,7 +2,7 @@ import { Knex } from 'knex';
 
 export async function up(knex: Knex): Promise<void> {
     return knex.raw(`
-    CREATE TABLE valute (
+    CREATE TABLE IF NOT EXISTS valute (
       id character varying(32) NOT NULL PRIMARY KEY,
       "NumCode" character varying(9) NOT NULL,
       "CharCode" character varying(9) NOT NULL,

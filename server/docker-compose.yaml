@@ -14,15 +14,13 @@ services:
     depends_on:
       - postgres
     restart: always
+
   postgres:
+    env_file:
+      - .env
     container_name: postgres
     image: postgres:latest
-#    todo env
-    environment:
-      - POSTGRES_PASSWORD
-      - POSTGRES_USER
-      - POSTGRES_DB
     volumes:
       - .:/docker-entrypoint-initdb.d
     ports:
-      - 127.0.0.1:7432:${DB_PORT}
+      - 127.0.0.1:7432:${POSTGRES_PORT}
