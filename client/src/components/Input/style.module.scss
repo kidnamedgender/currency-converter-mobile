@@ -6,14 +6,19 @@
   font-size: 18px;
   background-color: rgba(0, 0, 0, 0.05);
   color: #000;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
 }
 
 .input_block {
   max-width: 400px;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 0 auto;
 }
 
 .btn {
   width: 100%;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+  border-bottom-width: 4px;
+  border-color: #d6d6d6;
 }

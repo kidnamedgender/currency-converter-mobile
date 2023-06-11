@@ -1,10 +1,10 @@
-import {Text, TouchableOpacity} from 'react-native';
+import {Text, TouchableOpacity, Image} from 'react-native';
 import React from 'react';
 
 import {useLocation} from 'react-router-native';
 import style from './style.module.scss';
 
-const TabButton = ({title, handler, path}) => {
+const TabButton = ({image, handler, path}) => {
   const location = useLocation();
   return (
     <TouchableOpacity
@@ -12,7 +12,14 @@ const TabButton = ({title, handler, path}) => {
         path === location.pathname ? [style.root, style.active] : style.root
       }
       onPress={handler}>
-      <Text style={style.title}>{title}</Text>
+      <Image
+        source={
+          image === '../../assets/images/icon1.png'
+            ? require('../../assets/images/icon1.png')
+            : require('../../assets/images/recycle-symbol.png')
+        }
+        style={style.image}
+      />
     </TouchableOpacity>
   );
 };

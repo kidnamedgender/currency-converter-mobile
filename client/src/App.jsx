@@ -48,8 +48,13 @@ const App = () => {
     <View style={style.base}>
       <WithSplashScreen isAppReady={isAppReady} style={style.base}>
         <SafeAreaView style={style.base}>
-          <ScrollView onScrollEndDrag={handleScrollUp} style={style.base}>
+          <ScrollView
+            stickyHeaderIndices={[0]}
+            onScrollEndDrag={handleScrollUp}
+            style={style.base}>
             <SelectDropdown
+              buttonTextStyle={{textTransform: 'uppercase'}}
+              dropdownStyle={{borderRadius: 10}}
               data={i18n.languages}
               defaultValue={i18n.language}
               onSelect={value => changeLanguageHandler(value)}
@@ -58,22 +63,26 @@ const App = () => {
                 ...style.full_width,
               }}
             />
-            <View style={{display: 'flex', flexDirection: 'row'}}>
+            <View style={{...style.base, ...style.content}}>
+              <Router />
+            </View>
+          </ScrollView>
+          <View>
+            <View style={style.tabs}>
               <TabButton
                 title={t('demoScope.title_valutePage')}
                 handler={handleLeft}
                 path="/"
+                image="../../assets/images/icon1.png"
               />
               <TabButton
                 title={t('demoScope.title_converterPage')}
                 handler={handleRight}
                 path="/converter"
+                image="../../assets/images/recycle-symbol.png"
               />
             </View>
-            <View style={{...style.base, ...style.content}}>
-              <Router />
-            </View>
-          </ScrollView>
+          </View>
         </SafeAreaView>
       </WithSplashScreen>
     </View>
