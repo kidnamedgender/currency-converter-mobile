@@ -5,13 +5,14 @@ import {useDispatch, useSelector} from 'react-redux';
 import {useTranslation} from 'react-i18next';
 
 import CyrillicToTranslit from 'cyrillic-to-translit-js';
+
 import ValuteItem from '../../components/ValuteItem';
 import Title from '../../components/Title';
+import Error from '../../components/Error/Error';
 
 import {getValutes} from '../../store/slices/valuteSlice';
 
 import style from './style.module.scss';
-import Error from '../../components/Error/Error';
 
 const ValuteScreen = () => {
   const dispatch = useDispatch();
