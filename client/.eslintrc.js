@@ -13,5 +13,6 @@ module.exports = {
     'no-param-reassign': 'off',
     'global-require': 'off',
     'react/function-component-definition': 'off',
+    'import/no-extraneous-dependencies': 'off',
   },
 };

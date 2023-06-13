@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text, View} from 'react-native';
+import {View} from 'react-native';
 
 import {useDispatch, useSelector} from 'react-redux';
 import {useTranslation} from 'react-i18next';
@@ -11,11 +11,11 @@ import Title from '../../components/Title';
 import {getValutes} from '../../store/slices/valuteSlice';
 
 import style from './style.module.scss';
+import Error from '../../components/Error/Error';
 
 const ValuteScreen = () => {
   const dispatch = useDispatch();
-  const {valutes, status} = useSelector(state => state.valute);
-
+  const {valutes, status, error} = useSelector(state => state.valute);
   const toTranslit = new CyrillicToTranslit();
 
   const {t} = useTranslation();
@@ -25,18 +25,12 @@ const ValuteScreen = () => {
   }, [dispatch]);
 
   if (status === 'pending') {
-    return (
-      <View>
-        <Text style={style.status_block}>{t('demoScope.loading')}</Text>
-      </View>
-    );
+    return <Title title={t('demoScope.loading')} />;
   }
 
   if (status === 'rejected') {
     return (
-      <View>
-        <Text style={style.status_block}>{t('demoScope.error')}</Text>
-      </View>
+      <Error title={error.error} desc={error.message} code={error.statusCode} />
     );
   }
 

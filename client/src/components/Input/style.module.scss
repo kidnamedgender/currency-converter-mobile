@@ -1,10 +1,12 @@
+@import '../../const/constants';
+
 .input {
   border-style: solid;
   border-bottom-width: 1px;
-  border-color: rgba(0, 0, 0, 0.4);
+  border-color: $border-gray-color;
   padding-left: 10px;
   font-size: 18px;
-  background-color: rgba(0, 0, 0, 0.05);
+  background-color: $base-lightgray-color;
   color: #000;
   border-bottom-right-radius: 10px;
   border-bottom-left-radius: 10px;
@@ -20,5 +22,9 @@
   border-top-right-radius: 10px;
   border-top-left-radius: 10px;
   border-bottom-width: 4px;
-  border-color: #d6d6d6;
+  border-color: $border-lightgray-color;
+}
+
+.dropdown {
+  border-radius: 10px;
 }

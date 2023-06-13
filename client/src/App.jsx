@@ -41,7 +41,6 @@ const App = () => {
   const handleScrollUp = event => {
     if (!event.nativeEvent.contentOffset.y) {
       dispatch(getValutes());
-      console.log('Data update successfully');
     }
   };
   return (
@@ -53,8 +52,8 @@ const App = () => {
             onScrollEndDrag={handleScrollUp}
             style={style.base}>
             <SelectDropdown
-              buttonTextStyle={{textTransform: 'uppercase'}}
-              dropdownStyle={{borderRadius: 10}}
+              buttonTextStyle={style.dropdown_text}
+              dropdownStyle={style.dropdown}
               data={i18n.languages}
               defaultValue={i18n.language}
               onSelect={value => changeLanguageHandler(value)}
@@ -73,7 +72,7 @@ const App = () => {
                 title={t('demoScope.title_valutePage')}
                 handler={handleLeft}
                 path="/"
-                image="../../assets/images/icon1.png"
+                image="../../assets/images/valutes-icon.png"
               />
               <TabButton
                 title={t('demoScope.title_converterPage')}

@@ -28,7 +28,7 @@ const Input = ({
           defaultValue={currency}
           buttonStyle={style.btn}
           search
-          dropdownStyle={{borderRadius: 10}}
+          dropdownStyle={style.dropdown}
         />
         <TextInput
           style={style.input}

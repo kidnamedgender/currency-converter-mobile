@@ -1,13 +1,18 @@
+@import '../../const/constants';
+
 .container {
+  width: 95%;
   display: flex;
   justify-content: space-between;
   flex-direction: row;
   align-items: center;
-  margin-top: 20px;
+  margin: 20px auto 0;
   gap: 15px;
   padding: 10px;
-  background-color: rgba(0, 0, 0, 0.04);
   border-radius: 10px;
+  background-color: $base-lightgray-color;
+  border-bottom-width: 1px;
+  border-color: $border-lightgray-color;
 }
 
 .codes_list {

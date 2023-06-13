@@ -1,4 +1,4 @@
-import {Text, TouchableOpacity, Image} from 'react-native';
+import {TouchableOpacity, Image} from 'react-native';
 import React from 'react';
 
 import {useLocation} from 'react-router-native';
@@ -14,9 +14,9 @@ const TabButton = ({image, handler, path}) => {
       onPress={handler}>
       <Image
         source={
-          image === '../../assets/images/icon1.png'
-            ? require('../../assets/images/icon1.png')
-            : require('../../assets/images/recycle-symbol.png')
+          image === '../../assets/images/valutes-icon.png'
+            ? require('../../assets/images/valutes-icon.png')
+            : require('../../assets/images/convert-icon.png')
         }
         style={style.image}
       />

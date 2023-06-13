@@ -2,11 +2,11 @@ import React from 'react';
 import {View} from 'react-native';
 import {useSelector} from 'react-redux';
 import {useTranslation} from 'react-i18next';
-import Section from '../../components/Title';
+
 import Input from '../../components/Input';
+import Title from '../../components/Title';
 
 import style from './style.module.scss';
-import Title from '../../components/Title';
 
 const ConverterScreen = () => {
   const {valutes} = useSelector(state => state.valute);

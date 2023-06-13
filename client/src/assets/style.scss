@@ -1,7 +1,9 @@
+@import '../const/constants';
+
 .lang_block {
   background-color: transparent;
-  border-bottom-width: 4px;
-  border-color: rgba(0, 0, 0, 0.2);
+  border-bottom-width: 2px;
+  border-color: $border-lightgray-color;
   border-style: solid;
   width: 100%;
   background-color: white;
@@ -22,4 +24,13 @@
 .tabs {
   display: flex;
   flex-direction: row;
+}
+
+.dropdown {
+  border-radius: 10px;
+}
+
+.dropdown_text {
+  text-transform: uppercase;
+  font-weight: bold;
 }

@@ -3,12 +3,13 @@ import {instance} from '../../axios';
 
 export const getValutes = createAsyncThunk(
   'valute/getValutesStatus',
-  async () => {
+  async (arg, thunkAPI) => {
     try {
       const {data} = await instance.get('/valutes');
       return data;
     } catch (err) {
-      return err;
+      console.log(err);
+      return thunkAPI.rejectWithValue(err.response.data);
     }
   },
 );
@@ -18,13 +19,15 @@ const valuteSlice = createSlice({
   initialState: {
     valutes: [],
     status: 'pending',
+    error: {},
   },
   extraReducers: builder => {
     builder.addCase(getValutes.pending, state => {
       state.status = 'pending';
     });
-    builder.addCase(getValutes.rejected, state => {
+    builder.addCase(getValutes.rejected, (state, action) => {
       state.status = 'rejected';
+      state.error = action.payload;
     });
     builder.addCase(getValutes.fulfilled, (state, action) => {
       state.status = 'fulfilled';
