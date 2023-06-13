@@ -3,17 +3,20 @@ import {Text, View} from 'react-native';
 
 import {useDispatch, useSelector} from 'react-redux';
 import {useTranslation} from 'react-i18next';
-import Section from '../../components/Title';
+
+import CyrillicToTranslit from 'cyrillic-to-translit-js';
 import ValuteItem from '../../components/ValuteItem';
+import Title from '../../components/Title';
 
 import {getValutes} from '../../store/slices/valuteSlice';
 
 import style from './style.module.scss';
-import Title from '../../components/Title';
 
 const ValuteScreen = () => {
   const dispatch = useDispatch();
   const {valutes, status} = useSelector(state => state.valute);
+
+  const toTranslit = new CyrillicToTranslit();
 
   const {t} = useTranslation();
 
@@ -44,7 +47,11 @@ const ValuteScreen = () => {
         {valutes?.map(el => (
           <ValuteItem
             key={el.id}
-            Name={el.Name}
+            Name={
+              t('demoScope.lang') === 'ru'
+                ? el.Name
+                : toTranslit.transform(el.Name)
+            }
             Previous={el.Previous}
             charCode={el.CharCode}
             numCode={el.NumCode}

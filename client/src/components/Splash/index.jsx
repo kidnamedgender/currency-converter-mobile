@@ -26,7 +26,7 @@ const Splash = ({isAppReady}) => {
 
   const [state, setState] = React.useState(LOADING_IMAGE);
 
-  // todo разобраться
+  // todo разобрался)
   React.useEffect(() => {
     if (state === FADE_IN_IMAGE) {
       Animated.timing(imageOpacity, {

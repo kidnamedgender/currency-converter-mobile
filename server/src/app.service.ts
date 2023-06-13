@@ -3,7 +3,6 @@ import { Injectable } from '@nestjs/common';
 import { Cron, CronExpression } from '@nestjs/schedule';
 import { firstValueFrom } from 'rxjs';
 import { Knex } from 'knex';
-import * as process from 'process';
 import { InjectConnection } from 'nest-knexjs';
 
 @Injectable()
@@ -25,7 +24,7 @@ export class AppService {
     @Cron(CronExpression.EVERY_30_MINUTES)
     async handleCron(): Promise<void> {
         try {
-            // httpService возвращает Observable, для преобразования в Promise исользуется firstValueFrom (в прошлом .toPromise())
+            //todo httpService возвращает Observable, для преобразования в Promise исользуется firstValueFrom (в прошлом .toPromise())
             const { data } = await firstValueFrom(
                 this.httpService.get(process.env.URL),
             );
