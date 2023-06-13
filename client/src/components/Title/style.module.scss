@@ -4,11 +4,15 @@
   font-size: 24px;
   color: #000;
   font-weight: 600;
-}
-
-.root {
   background-color: rgba($base-green-color, 0.4);
   padding: 10px 20px;
   border-radius: 10px;
-  margin-right: auto;
 }
+
+.root {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  align-items: center;
+}
+

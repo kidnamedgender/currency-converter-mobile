@@ -10,7 +10,8 @@
     "start": "nest start",
     "start:dev": "nest start --watch",
     "start:prod": "node dist/main",
-    "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix"
+    "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
+    "migrate": "npx knex migrate:latest --knexfile config/knexfile.ts"
   },
   "dependencies": {
     "@nestjs/axios": "^2.0.0",

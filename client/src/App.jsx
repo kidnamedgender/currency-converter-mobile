@@ -43,6 +43,7 @@ const App = () => {
       dispatch(getValutes());
     }
   };
+
   return (
     <View style={style.base}>
       <WithSplashScreen isAppReady={isAppReady} style={style.base}>
