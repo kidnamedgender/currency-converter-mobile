@@ -2,8 +2,6 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
-
-// todo Привести к виду - https://docs.arealidea.com/services/development_web/notes/nestjs.html
 const bootstrap = async () => {
     try {
         const app = await NestFactory.create(AppModule);

@@ -8,7 +8,6 @@ export const getValutes = createAsyncThunk(
       const {data} = await instance.get('/valutes');
       return data;
     } catch (err) {
-      console.log(err);
       return thunkAPI.rejectWithValue(err.response.data);
     }
   },

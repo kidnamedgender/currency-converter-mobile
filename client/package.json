@@ -5,7 +5,7 @@
   "scripts": {
     "android": "react-native run-android",
     "ios": "react-native run-ios",
-    "lint": "eslint \"*/**/*.{js,ts,jsx}\" --fix",
+    "lint": "eslint \"*.{js,ts,jsx}\" --fix",
     "start": "react-native start"
   },
   "dependencies": {

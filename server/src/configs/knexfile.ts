@@ -1,6 +1,6 @@
 import type { Knex } from 'knex';
 import { config } from 'dotenv';
-config({ path: '../.env' });
+config({ path: '../../.env' });
 
 console.log(process.env.POSTGRES_HOST);
 

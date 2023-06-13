@@ -25,10 +25,11 @@ const Input = ({
         <SelectDropdown
           data={currencies.current}
           onSelect={selectedValue => onChangeCur(selectedValue)}
+          buttonTextStyle={style.btn_text}
           defaultValue={currency}
           buttonStyle={style.btn}
           search
-          dropdownStyle={style.dropdown}
+          dropdownStyle={style.btn_dropdown}
         />
         <TextInput
           style={style.input}

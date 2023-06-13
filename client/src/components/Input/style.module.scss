@@ -10,6 +10,7 @@
   color: #000;
   border-bottom-right-radius: 10px;
   border-bottom-left-radius: 10px;
+  font-family: Exo2-Medium;
 }
 
 .input_block {
@@ -25,6 +26,10 @@
   border-color: $border-lightgray-color;
 }
 
-.dropdown {
+.btn_text {
+  font-family: Exo2-SemiBold;
+}
+
+.btn_dropdown {
   border-radius: 10px;
 }

@@ -23,12 +23,14 @@
 
 .code {
   color: #000;
+  font-family: Exo2-Medium;
 }
 
 .name {
   width: 200px;
   text-align: center;
   color: #000;
+  font-family: Exo2-Medium;
 }
 
 .values_list {
@@ -41,19 +43,23 @@
   color: #000;
   opacity: 0.7;
   font-weight: 600;
+  font-family: Exo2-Bold;
 }
 
 .difference_plus {
   color: green;
   font-size: 12px;
+  font-family: Exo2-Regular;
 }
 
 .difference_minus {
   color: red;
   font-size: 12px;
+  font-family: Exo2-Regular;
 }
 
 .percents {
   font-size: 10px;
   color: blue;
+  font-family: Exo2-Regular;
 }

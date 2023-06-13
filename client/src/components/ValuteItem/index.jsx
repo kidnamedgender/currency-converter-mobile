@@ -17,7 +17,7 @@ const ValuteItem = ({
         <Text style={style.code}>{charCode}</Text>
       </View>
       <View>
-        <Text style={style.name}>
+        <Text style={{...style.name}}>
           {Nominal} {Name}
         </Text>
       </View>

@@ -1,8 +1,7 @@
 @import '../const/constants';
 
 .lang_block {
-  background-color: transparent;
-  border-bottom-width: 2px;
+  border-bottom-width: 4px;
   border-color: $border-lightgray-color;
   border-style: solid;
   width: 100%;
@@ -32,5 +31,5 @@
 
 .dropdown_text {
   text-transform: uppercase;
-  font-weight: bold;
+  font-family: Exo2-SemiBold;
 }

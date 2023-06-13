@@ -1,0 +1,29 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "src/assets/fonts/Exo2-Bold.ttf",
+      "sha1": "0dd398ff67ab06c97767c6f9864e38085dba3aba"
+    },
+    {
+      "path": "src/assets/fonts/Exo2-Medium.ttf",
+      "sha1": "727420d78d221fabae9497e58e27828af79fbe1e"
+    },
+    {
+      "path": "src/assets/fonts/Exo2-MediumItalic.ttf",
+      "sha1": "5750e410acb1f8ba874b53985beb4f0b2c21ff9c"
+    },
+    {
+      "path": "src/assets/fonts/Exo2-Regular.ttf",
+      "sha1": "6ed43b5137624e5e73898d242b9665c5e1f45928"
+    },
+    {
+      "path": "src/assets/fonts/Exo2-SemiBold.ttf",
+      "sha1": "fceac098295ae23f2bd219e566b1e3f1db825a7c"
+    },
+    {
+      "path": "src/assets/fonts/Exo2-SemiBoldItalic.ttf",
+      "sha1": "2dc2795359b785489dfacc29cabfd871502f3d17"
+    }
+  ]
+}
