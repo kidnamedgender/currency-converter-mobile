@@ -22,7 +22,9 @@ const ValuteScreen = () => {
   const {t} = useTranslation();
 
   React.useEffect(() => {
-    dispatch(getValutes());
+    if (!valutes.length) {
+      dispatch(getValutes());
+    }
   }, [dispatch]);
 
   if (status === 'pending') {

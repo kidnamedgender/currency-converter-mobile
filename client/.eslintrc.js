@@ -14,5 +14,6 @@ module.exports = {
     'global-require': 'off',
     'react/function-component-definition': 'off',
     'import/no-extraneous-dependencies': 'off',
+    'react-hooks/exhaustive-deps': 'off',
   },
 };

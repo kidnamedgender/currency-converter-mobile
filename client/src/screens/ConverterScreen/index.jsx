@@ -42,7 +42,9 @@ const ConverterScreen = () => {
       currencies.current[el.CharCode] = el.Value / el.Nominal;
     });
     charCodes.current = [];
-    dispatch(changeFromValue({value: valueFrom, currencies}));
+    dispatch(
+      changeFromValue({value: valueFrom === '0' ? 1 : valueFrom, currencies}),
+    );
   }, [dispatch, valutes]);
 
   return (

@@ -1,13 +1,15 @@
 import {createSlice} from '@reduxjs/toolkit';
 
+export const initialState = {
+  valuteFrom: 'USD',
+  valuteTo: 'RUB',
+  valueFrom: '0',
+  valueTo: '0',
+};
+
 const converterSlice = createSlice({
   name: 'converter',
-  initialState: {
-    valuteFrom: 'USD',
-    valuteTo: 'RUB',
-    valueFrom: '0',
-    valueTo: '0',
-  },
+  initialState,
   reducers: {
     changeFromValue(state, action) {
       state.valueTo = (
@@ -40,4 +42,5 @@ export const {
   changeValuteFrom,
   changeValuteTo,
 } = converterSlice.actions;
+
 export default converterSlice.reducer;
