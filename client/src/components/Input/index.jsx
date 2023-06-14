@@ -1,6 +1,8 @@
 import React from 'react';
 import {TextInput, View} from 'react-native';
 
+import {useDispatch} from 'react-redux';
+
 import SelectDropdown from 'react-native-select-dropdown';
 
 import style from './style.module.scss';
@@ -10,20 +12,22 @@ const Input = ({
   currency,
   onChangeCurrency,
   onChangeValue,
+  charCodes,
   currencies,
 }) => {
+  const dispatch = useDispatch();
   const onChangeVal = changedValue => {
-    onChangeValue(changedValue);
+    dispatch(onChangeValue({value: changedValue, currencies}));
   };
   const onChangeCur = changedCur => {
-    onChangeCurrency(changedCur);
+    dispatch(onChangeCurrency(changedCur));
   };
 
   return (
     <View>
       <View style={style.input_block}>
         <SelectDropdown
-          data={currencies.current}
+          data={charCodes.current}
           onSelect={selectedValue => onChangeCur(selectedValue)}
           buttonTextStyle={style.btn_text}
           defaultValue={currency}

@@ -1,21 +1,25 @@
 import React from 'react';
 import {View} from 'react-native';
-import {useSelector} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
 import {useTranslation} from 'react-i18next';
 
 import Input from '../../components/Input';
 import Title from '../../components/Title';
 
 import style from './style.module.scss';
+import {
+  changeFromValue,
+  changeToValue,
+  changeValuteFrom,
+  changeValuteTo,
+} from '../../store/slices/converterSlice';
 
 const ConverterScreen = () => {
   const {valutes} = useSelector(state => state.valute);
-
-  const [fromCurrency, setFromCurrency] = React.useState('USD');
-  const [toCurrency, setToCurrency] = React.useState('RUB');
-
-  const [fromValue, setFromValue] = React.useState(0);
-  const [toValue, setToValue] = React.useState(0);
+  const {valuteFrom, valuteTo, valueFrom, valueTo} = useSelector(
+    state => state.converter,
+  );
+  const dispatch = useDispatch();
 
   const currencies = React.useRef({});
   const charCodes = React.useRef([]);
@@ -24,41 +28,22 @@ const ConverterScreen = () => {
 
   charCodes.current = [];
   valutes.forEach(el => charCodes.current.push(el.CharCode));
-  const onChangeFromPrice = React.useCallback(
-    value => {
-      const price = value / currencies.current[toCurrency];
-      const result = price * currencies.current[fromCurrency];
-      setToValue(Number(result.toFixed(3)));
-      setFromValue(value);
-    },
-    [fromCurrency, toCurrency],
-  );
-
-  const onChangeToPrice = React.useCallback(
-    value => {
-      const price = value / currencies.current[fromCurrency];
-      const result = price * currencies.current[toCurrency];
-      setFromValue(Number(result.toFixed(3)));
-      setToValue(value);
-    },
-    [fromCurrency, toCurrency],
-  );
 
   React.useEffect(() => {
-    onChangeFromPrice(fromValue);
-  }, [fromCurrency, fromValue, onChangeFromPrice]);
+    dispatch(changeFromValue({value: valueFrom, currencies}));
+  }, [dispatch, valuteFrom]);
 
   React.useEffect(() => {
-    onChangeToPrice(toValue);
-  }, [toCurrency, toValue, onChangeToPrice]);
+    dispatch(changeToValue({value: valueTo, currencies}));
+  }, [dispatch, valuteTo]);
 
   React.useEffect(() => {
     valutes.forEach(el => {
       currencies.current[el.CharCode] = el.Value / el.Nominal;
     });
     charCodes.current = [];
-    onChangeFromPrice(1);
-  }, [onChangeFromPrice, valutes]);
+    dispatch(changeFromValue({value: valueFrom, currencies}));
+  }, [dispatch, valutes]);
 
   return (
     <View>
@@ -66,18 +51,20 @@ const ConverterScreen = () => {
       <View style={style.list}>
         <View style={style.wrapper}>
           <Input
-            value={fromValue}
-            currency={fromCurrency}
-            onChangeCurrency={setFromCurrency}
-            onChangeValue={onChangeFromPrice}
-            currencies={charCodes}
+            value={valueFrom}
+            currency={valuteFrom}
+            onChangeCurrency={changeValuteFrom}
+            onChangeValue={changeFromValue}
+            charCodes={charCodes}
+            currencies={currencies}
           />
           <Input
-            value={toValue}
-            currency={toCurrency}
-            onChangeCurrency={setToCurrency}
-            onChangeValue={onChangeToPrice}
-            currencies={charCodes}
+            value={valueTo}
+            currency={valuteTo}
+            onChangeCurrency={changeValuteTo}
+            onChangeValue={changeToValue}
+            charCodes={charCodes}
+            currencies={currencies}
           />
         </View>
       </View>
