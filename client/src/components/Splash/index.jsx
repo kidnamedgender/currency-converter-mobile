@@ -1,7 +1,6 @@
 import React from 'react';
 import {Animated, StyleSheet} from 'react-native';
 
-import style from './style.module.scss';
 import {
   FADE_IN_IMAGE,
   FADE_OUT,
@@ -9,6 +8,8 @@ import {
   LOADING_IMAGE,
   WAIT_FOR_APP_TO_BE_READY,
 } from '../../const/splash';
+
+import style from './style.module.scss';
 
 export const WithSplashScreen = ({children, isAppReady}) => {
   return (

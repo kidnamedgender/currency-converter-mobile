@@ -1,5 +1,6 @@
-import * as React from 'react';
+import React from 'react';
 import {Text, View} from 'react-native';
+
 import style from './style.module.scss';
 
 const Error = ({title, desc, code}) => {

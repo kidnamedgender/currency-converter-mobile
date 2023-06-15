@@ -4,6 +4,7 @@ import { Cron, CronExpression } from '@nestjs/schedule';
 import { firstValueFrom } from 'rxjs';
 import { Knex } from 'knex';
 import { InjectConnection } from 'nest-knexjs';
+import { Valute } from './dto/Valute.dto';
 
 @Injectable()
 export class AppService {
@@ -12,7 +13,7 @@ export class AppService {
         @InjectConnection() private readonly knex: Knex,
     ) {}
 
-    async getValutes(): Promise<object[]> {
+    async getValutes(): Promise<Valute[]> {
         try {
             const res = await this.knex.raw('SELECT * FROM valute');
             return res.rows;

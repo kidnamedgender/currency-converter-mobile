@@ -6,21 +6,11 @@ import { ScheduleModule } from '@nestjs/schedule';
 import { KnexModule } from 'nest-knexjs';
 
 import { config } from 'dotenv';
+import { knexConfig } from './configs/knexconfig';
 config();
 @Module({
     imports: [
-        KnexModule.forRoot({
-            config: {
-                client: 'pg',
-                version: '14.8',
-                connection: {
-                    host: process.env.POSTGRES_HOST,
-                    user: process.env.POSTGRES_USER,
-                    password: process.env.POSTGRES_PASSWORD,
-                    database: process.env.POSTGRES_DB,
-                },
-            },
-        }),
+        KnexModule.forRoot(knexConfig),
         HttpModule,
         ScheduleModule.forRoot(),
     ],

@@ -6,13 +6,14 @@ import {useTranslation} from 'react-i18next';
 import Input from '../../components/Input';
 import Title from '../../components/Title';
 
-import style from './style.module.scss';
 import {
   changeFromValue,
   changeToValue,
   changeValuteFrom,
   changeValuteTo,
 } from '../../store/slices/converterSlice';
+
+import style from './style.module.scss';
 
 const ConverterScreen = () => {
   const {valutes} = useSelector(state => state.valute);

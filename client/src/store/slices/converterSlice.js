@@ -11,6 +11,7 @@ const converterSlice = createSlice({
   name: 'converter',
   initialState,
   reducers: {
+    // action конвертирования из первой валюты во вторую
     changeFromValue(state, action) {
       state.valueTo = (
         (action.payload.value /
@@ -19,6 +20,7 @@ const converterSlice = createSlice({
       ).toFixed(3);
       state.valueFrom = action.payload.value;
     },
+    // action конвертирования из второй валюты в первую
     changeToValue(state, action) {
       state.valueFrom = (
         (action.payload.value /
@@ -27,6 +29,8 @@ const converterSlice = createSlice({
       ).toFixed(3);
       state.valueTo = action.payload.value;
     },
+
+    // actions замены валюты
     changeValuteFrom(state, action) {
       state.valuteFrom = action.payload;
     },
