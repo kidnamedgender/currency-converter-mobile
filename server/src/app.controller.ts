@@ -4,7 +4,6 @@ import {
     ApiInternalServerErrorResponse,
     ApiNotFoundResponse,
     ApiOkResponse,
-    ApiResponse,
 } from '@nestjs/swagger';
 import { Valute } from './dto/Valute.dto';
 
@@ -38,7 +37,7 @@ export class AppController {
                 error: 'Internal Server Error',
             },
         },
-        description: 'Server lost connection',
+        description: 'Internal server error',
     })
     @Get('valutes')
     getValutes(): Promise<object[]> {

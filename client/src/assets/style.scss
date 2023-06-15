@@ -1,35 +1,4 @@
-@import '../const/constants';
-
-.lang_block {
-  border-bottom-width: 4px;
-  border-color: $border-lightgray-color;
-  border-style: solid;
-  width: 100%;
-  background-color: white;
-}
-
 .base {
   background-color: #fff;
   height: 100%;
-}
-
-.content {
-  margin-top: 32px;
-  margin-bottom: 32px;
-  padding-left: 20px;
-  padding-right: 20px;
-}
-
-.tabs {
-  display: flex;
-  flex-direction: row;
-}
-
-.dropdown {
-  border-radius: 10px;
-}
-
-.dropdown_text {
-  text-transform: uppercase;
-  font-family: Exo2-SemiBold;
 }
