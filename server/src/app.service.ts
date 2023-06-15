@@ -31,32 +31,29 @@ export class AppService {
             );
 
             await this.knex.raw('TRUNCATE TABLE valute');
-            let values = '';
+
+            const values = [];
+
             Object.keys(data.Valute).map((key) => {
-                values += `('${data.Valute[key].ID}',
-                 ${data.Valute[key].NumCode}, 
-                 '${data.Valute[key].CharCode}', 
-                 ${data.Valute[key].Nominal}, 
-                 '${data.Valute[key].Name}', 
-                 ${data.Valute[key].Value}, 
-                 ${data.Valute[key].Previous}),`;
+
+                values.push(data.Valute[key].ID,
+                    data.Valute[key].NumCode,
+                    data.Valute[key].CharCode,
+                    data.Valute[key].Nominal,
+                    data.Valute[key].Name,
+                    data.Valute[key].Value,
+                    data.Valute[key].Previous)
             });
 
-            values = values.slice(0, -1) + ';';
+            const cols = ["id", "NumCode", "CharCode", "Nominal", "Name", "Value", "Previous"]
 
-            const raw = `INSERT INTO valute (:ID:, :numCode:, :charCode:, :nominal:, :name:, :value:, :previous:)
-                         VALUES ${values}`;
-            await this.knex.raw(raw, {
-                ID: 'id',
-                numCode: 'NumCode',
-                charCode: 'CharCode',
-                nominal: 'Nominal',
-                name: 'Name',
-                value: 'Value',
-                previous: 'Previous',
-            });
+            const raw = (`INSERT INTO valute (${cols.map(col => `"${col}"`)}) VALUES ${Object.keys(data.Valute).map(val => `(`+cols.map(_ => '?').join(',')+`)`)};`);
+
+            await this.knex.raw(raw, values);
+
             console.log('Данные успешно обновлены');
         } catch (err) {
+
             console.log('Что-то пошло не так... ' + err);
         }
     }
